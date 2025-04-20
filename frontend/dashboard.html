@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Your Dashboard</h2>
+    <div class="dashboard">
+        <button onclick="getApiKey()">Get API Key</button>
+        <p id="apikey"></p>
+        <input type="text" id="country" placeholder="Enter country name">
+        <button onclick="fetchCountry()">Search Country</button>
+        <pre id="result"></pre>
+    </div>
+
+    <script>
+        async function getApiKey() {
+            const res = await fetch('/user/apikey');
+            const data = await res.json();
+            document.getElementById('apikey').innerText = data.apiKey;
+        }
+
+        async function fetchCountry() {
+            const country = document.getElementById('country').value;
+            const key = document.getElementById('apikey').innerText;
+            const res = await fetch(`/api/country?name=${country}&apikey=${key}`);
+            const data = await res.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        }
+
+    </script>
+</body>
+</html>
