@@ -26,9 +26,9 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.json({ message: 'Logged out' });
-});
+// router.get('/logout', (req, res) => {
+//     req.session.destroy();
+//     res.json({ message: 'Logged out' });
+// });
 
 module.exports = router;
